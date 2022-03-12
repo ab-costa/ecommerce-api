@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "request_product")
-public class RequestProduct {
+@Table(name = "demand_product")
+public class DemandProduct {
 
 	@Id
 	@Column(name = "id")
@@ -19,7 +19,7 @@ public class RequestProduct {
 	@Column(name = "product_id", nullable = false)
 	private Integer productId;
 	
-	@Column(name = "request_id", nullable = false)
+	@Column(name = "demand_id", nullable = false)
 	private Integer requestId;
 	
 	@Column(name = "product_amount", nullable = false)

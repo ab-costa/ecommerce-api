@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "request")
-public class Rquest {
+@Table(name = "demand")
+public class Demand {
 
 	@Id
 	@Column(name = "id")
