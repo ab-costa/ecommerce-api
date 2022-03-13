@@ -1,11 +1,16 @@
 package br.com.abcosta.ecommerceifood.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "client")
@@ -49,7 +54,11 @@ public class Client {
 	@Column(name = "zip_code", length = 8, nullable  =false)
 	private String zipCode;
 	
+	@OneToMany(mappedBy = "client")
+	@JsonIgnoreProperties("client")
+	private List<Demand> demandsList;
 	
+
 	public Integer getId() {
 		return id;
 	}
@@ -144,5 +153,13 @@ public class Client {
 	
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	
+	public List<Demand> getDemandsList() {
+		return demandsList;
+	}
+
+	public void setDemandsList(List<Demand> demandsList) {
+		this.demandsList = demandsList;
 	}
 }

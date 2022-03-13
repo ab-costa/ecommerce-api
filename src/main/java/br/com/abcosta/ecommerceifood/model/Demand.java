@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "demand")
@@ -30,8 +34,10 @@ public class Demand {
 	@Column(name = "payment", nullable = false)
 	private Double payment;
 	
-	@Column(name = "client_id", nullable = false)
-	private Integer clientId;
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	@JsonIgnoreProperties("demandsList")
+	private Client client;
 	
 
 	public Integer getId() {
@@ -74,11 +80,11 @@ public class Demand {
 		this.payment = payment;
 	}
 
-	public Integer getClientId() {
-		return clientId;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setClientId(Integer clientId) {
-		this.clientId = clientId;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }
