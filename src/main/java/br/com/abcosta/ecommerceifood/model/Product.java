@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "product")
@@ -31,10 +35,12 @@ public class Product {
 	@Column(name = "link_image", length = 255)
 	private String linkImage;
 	
-	@Column(name = "department_id", nullable = false)
-	private Integer departmentId;
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	@JsonIgnoreProperties("productsList")
+	private Department departament;
 	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -83,11 +89,11 @@ public class Product {
 		this.linkImage = linkImage;
 	}
 	
-	public Integer getDepartmentId() {
-		return departmentId;
+	public Department getDepartament() {
+		return departament;
 	}
-	
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
+
+	public void setDepartament(Department departament) {
+		this.departament = departament;
 	}
 }
