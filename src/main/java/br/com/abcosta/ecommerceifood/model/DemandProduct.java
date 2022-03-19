@@ -5,22 +5,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "demand_product")
 public class DemandProduct {
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name = "product_id", nullable = false)
+	@Column(name = "demand_product_id")
 	private Integer productId;
 	
-	@Column(name = "demand_id", nullable = false)
-	private Integer requestId;
+	@ManyToOne
+	@JoinColumn(name = "demand")
+	@JsonIgnoreProperties("products")
+	private Demand demand;
+	
+	@ManyToOne
+	@JoinColumn(name = "product")
+	private Product product;
 	
 	@Column(name = "product_amount", nullable = false)
 	private Integer productAmount;
@@ -32,14 +39,6 @@ public class DemandProduct {
 	private Double total;
 	
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getProductId() {
 		return productId;
 	}
@@ -48,12 +47,20 @@ public class DemandProduct {
 		this.productId = productId;
 	}
 
-	public Integer getRequestId() {
-		return requestId;
+	public Demand getDemand() {
+		return demand;
 	}
 
-	public void setRequestId(Integer requestId) {
-		this.requestId = requestId;
+	public void setDemand(Demand demand) {
+		this.demand = demand;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Integer getProductAmount() {

@@ -15,47 +15,47 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "department")
 public class Department {
-	
+
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "department_id")
+	private Integer departmentId;
 	
-	@Column(name = "name", length = 50, nullable = false)
-	private String name;
+	@Column(name = "department_name", length = 50, nullable = false)
+	private String departmentName;
 	
 	@Column(name = "floor")
 	private Integer floor;
 	
-	@OneToMany(mappedBy = "departament")	
-	@JsonIgnoreProperties("departament")
+	@OneToMany(mappedBy = "department")
+	@JsonIgnoreProperties("department")
 	private List<Product> productsList;
-	
 
-	public Integer getId() {
-		return id;
-	}
 	
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer getDepartmentId() {
+		return departmentId;
 	}
-	
-	public String getName() {
-		return name;
+
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public String getDepartmentName() {
+		return departmentName;
 	}
-	
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
 	public Integer getFloor() {
 		return floor;
 	}
-	
+
 	public void setFloor(Integer floor) {
 		this.floor = floor;
 	}
-	
+
 	public List<Product> getProductsList() {
 		return productsList;
 	}

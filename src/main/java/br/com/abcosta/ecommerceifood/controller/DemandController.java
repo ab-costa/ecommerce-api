@@ -19,4 +19,9 @@ public class DemandController {
 	public List<Demand> getAll() {
 		return (List<Demand>)dao.findAll();
 	}
+	
+	@GetMapping("/pedidos1")
+	public Demand getById() {
+		return dao.findById(1).get();
+	}
 }

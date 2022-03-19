@@ -13,16 +13,16 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "client")
-public class Client {
-	
+@Table(name = "customer")
+public class Customer {
+
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "customer_id")
+	private Integer customerId;
 	
-	@Column(name = "name", length  = 100, nullable = false)
-	private String name;
+	@Column(name = "customer_name", length =100, nullable = false)
+	private String customerName;
 	
 	@Column(name = "cpf", length = 11, nullable = false, unique = true)
 	private String cpf;
@@ -36,10 +36,10 @@ public class Client {
 	@Column(name = "public_place", length = 50, nullable = false)
 	private String publicPlace;
 	
-	@Column(name = "number")
-	private Integer number;
+	@Column(name = "address_number")
+	private String addressNumber;
 	
-	@Column(name ="complement", length = 30)
+	@Column(name = "complement", length = 30)
 	private String complement;
 	
 	@Column(name = "neighborhood", length = 30, nullable = false)
@@ -51,106 +51,106 @@ public class Client {
 	@Column(name = "state", length = 2, nullable = false)
 	private String state;
 	
-	@Column(name = "zip_code", length = 8, nullable  =false)
+	@Column(name = "zip_code", length =8, nullable = false)
 	private String zipCode;
 	
-	@OneToMany(mappedBy = "client")
-	@JsonIgnoreProperties("client")
+	@OneToMany(mappedBy = "customer")
+	@JsonIgnoreProperties("customer")
 	private List<Demand> demandsList;
 	
 
-	public Integer getId() {
-		return id;
+	public Integer getCustomerId() {
+		return customerId;
 	}
-	
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
-	
-	public String getName() {
-		return name;
+
+	public String getCustomerName() {
+		return customerName;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
-	
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Integer getPhone() {
 		return phone;
 	}
-	
+
 	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
-	
+
 	public String getPublicPlace() {
 		return publicPlace;
 	}
-	
+
 	public void setPublicPlace(String publicPlace) {
 		this.publicPlace = publicPlace;
 	}
-	
-	public Integer getNumber() {
-		return number;
+
+	public String getAddressNumber() {
+		return addressNumber;
 	}
-	
-	public void setNumber(Integer number) {
-		this.number = number;
+
+	public void setAddressNumber(String addressNumber) {
+		this.addressNumber = addressNumber;
 	}
-	
+
 	public String getComplement() {
 		return complement;
 	}
-	
+
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
-	
+
 	public String getNeighborhood() {
 		return neighborhood;
 	}
-	
+
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 	}
-	
+
 	public String getCity() {
 		return city;
 	}
-	
+
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
-	
+
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+
 	public String getZipCode() {
 		return zipCode;
 	}
-	
+
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}

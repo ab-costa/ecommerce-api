@@ -16,15 +16,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Product {
 
 	@Id
-	@Column(name ="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "product_id")
+	private Integer productId;
 	
-	@Column(name = "name", length = 50, nullable= false)
-	private String name;
+	@Column(name = "product_name", length = 50, nullable = false)
+	private String productName;
 	
-	@Column(name = "description", columnDefinition = "text")
-	private String description;
+	@Column(name = "product_description", columnDefinition = "TEXT")
+	private String productDescription;
 	
 	@Column(name = "price", nullable = false)
 	private Double price;
@@ -36,64 +36,64 @@ public class Product {
 	private String linkImage;
 	
 	@ManyToOne
-	@JoinColumn(name = "department_id")
+	@JoinColumn(name = "department")
 	@JsonIgnoreProperties("productsList")
-	private Department departament;
+	private Department department;
 	
 
-	public Integer getId() {
-		return id;
+	public Integer getProductId() {
+		return productId;
 	}
-	
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
-	
-	public String getName() {
-		return name;
+
+	public String getProductName() {
+		return productName;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	
-	public String getDescription() {
-		return description;
+
+	public String getProductDescription() {
+		return productDescription;
 	}
-	
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
-	
+
 	public Double getPrice() {
 		return price;
 	}
-	
+
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
 	public Integer getInventory() {
 		return inventory;
 	}
-	
+
 	public void setInventory(Integer inventory) {
 		this.inventory = inventory;
 	}
-	
+
 	public String getLinkImage() {
 		return linkImage;
 	}
-	
+
 	public void setLinkImage(String linkImage) {
 		this.linkImage = linkImage;
 	}
-	
-	public Department getDepartament() {
-		return departament;
+
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartament(Department departament) {
-		this.departament = departament;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 }

@@ -1,7 +1,9 @@
 package br.com.abcosta.ecommerceifood.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,11 +21,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Demand {
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "demand_id")
+	private Integer demandId;
 	
-	@Column(name = "date", nullable = false)
+	@Column(name = "demand_date", nullable = false)
 	private LocalDate date;
 	
 	@Column(name = "total", nullable = false)
@@ -35,17 +38,29 @@ public class Demand {
 	private Double payment;
 	
 	@ManyToOne
-	@JoinColumn(name = "client_id")
+	@JoinColumn(name = "customer")
 	@JsonIgnoreProperties("demandsList")
-	private Client client;
+	private Customer customer;
 	
-
-	public Integer getId() {
-		return id;
+	@OneToMany(mappedBy = "demand", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("demand")
+	private List<DemandProduct> productsList;
+	
+	
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Integer getDemandId() {
+		return demandId;
+	}
+
+	public void setDemandId(Integer demandId) {
+		this.demandId = demandId;
 	}
 
 	public LocalDate getDate() {
@@ -79,12 +94,12 @@ public class Demand {
 	public void setPayment(Double payment) {
 		this.payment = payment;
 	}
-
-	public Client getClient() {
-		return client;
+	
+	public List<DemandProduct> getProductsList() {
+		return productsList;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setProductsList(List<DemandProduct> productsList) {
+		this.productsList = productsList;
 	}
 }
